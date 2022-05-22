@@ -1,5 +1,5 @@
 import re
-story_file = '../assets/dark_and_stormy_night_template.txt'
+story_file = '../assets/template.txt'
 
 intro = """****Welcome to the Madlib Game!****
 
@@ -16,15 +16,15 @@ def read_template(file):
         with open(file) as t:
             print(intro)
             template = t.read()
-            return template
+            parse_template(template)
     except FileNotFoundError as e:
         print('CHECK PATHING OR LOCATION OF FILE!', e)
 
 # create parse template function
 def parse_template(file):
     try:
-        list = read_template(file)
-        newlist = re.findall(r'\{.*?\}', list)
+        newlist = re.findall(r'\{.*?\}', file)
+        print(file)
         print(newlist)
         # return list, newlist
     except AssertionError as e:  
