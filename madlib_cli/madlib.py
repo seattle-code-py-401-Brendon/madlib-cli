@@ -1,4 +1,4 @@
-file = '../assets/dark_and_stormy_night_template.txt'
+story_file = '../assets/dark_and_stormy_night_template.txt'
 
 intro = """****Welcome to the Madlib Game!****
 
@@ -14,10 +14,6 @@ def read_template(file):
     try:
         with open(file) as t:
             print(intro)
-            adj_One = input('Enter Adjective : ')
-            adj_Two = input('Enter Second Adjective :')
-            noun = input('Enter a noun : ')
-            print(adj_One,adj_Two,noun)
             template = t.read()
             return template
     except FileNotFoundError as e:
@@ -27,13 +23,25 @@ def read_template(file):
 def parse_template(file):
     try:
         list = read_template(file)
-        split_list = list.split('{}')
-        print(split_list)
-       
+        return list
     except AssertionError as e:  
         print(e)
 # create merge function
 def merge(file):
-    pass
+    try:
+        list = parse_template(file)
+        adj_One = input('Enter Adjective : ')
+        adj_Two = input('Enter Second Adjective : ')
+        noun = input('Enter a noun : ')
+        print(adj_One,adj_Two,noun)
+        list = list.replace("{Adjective}", adj_One, 1)
+        list = list.replace("{Adjective}", adj_Two, 2)
+        list = list.replace("{Noun}", noun, 3)
+        print(list)
+        merge(story_file)
 
-parse_template(file)
+    except AssertionError as e:
+        print(e)
+
+
+merge(story_file)
