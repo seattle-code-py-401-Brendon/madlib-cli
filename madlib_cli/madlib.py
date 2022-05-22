@@ -9,13 +9,15 @@ intro = """****Welcome to the Madlib Game!****
         you previously entered nouns and adjectives.
         step 3. !!!HAVE A LAUGH!!! 
 """
-
-print(intro)
-
 # create read_temple function
 def read_template(file):
     try:
         with open(file) as t:
+            print(intro)
+            adj_One = input('Enter Adjective : ')
+            adj_Two = input('Enter Second Adjective :')
+            noun = input('Enter a noun : ')
+            print(adj_One,adj_Two,noun)
             template = t.read()
             return template
     except FileNotFoundError as e:
@@ -25,7 +27,8 @@ def read_template(file):
 def parse_template(file):
     try:
         list = read_template(file)
-        print(list)
+        split_list = list.split('{}')
+        print(split_list)
        
     except AssertionError as e:  
         print(e)
