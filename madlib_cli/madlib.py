@@ -27,17 +27,18 @@ def parse_template(results):
         pattern = r"{(.*?)}"
         parts = tuple(re.findall(pattern, results))
         stripped = re.sub(pattern, "{}", results)
-        return stripped, list(parts)
+        return stripped,parts
 
     except AssertionError as e:  
         print(e)
 # create merge function
 def merge(stripped, parts):
     try:
-        adj_One = input('Enter Adjective : ')
-        adj_Two = input('Enter Second Adjective : ')
-        noun = input('Enter a noun : ')
-        pass
+        new_list = []
+        new_list.append(input('Enter Adjective : '))
+        new_list.append(input('Enter Second Adjective : '))
+        new_list.append(input('Enter a noun : '))
+        return stripped.split(), new_list
             
 
     except AssertionError as e:
