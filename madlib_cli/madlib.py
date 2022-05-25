@@ -16,17 +16,18 @@ def read_template(file):
         with open(file) as t:
             print(intro)
             template = t.read()
-            parse_template(template)
+            return template
     except FileNotFoundError as e:
         print('CHECK PATHING OR LOCATION OF FILE!', e)
 
 # create parse template function
-def parse_template(file):
+def parse_template(results):
     try:
-        newlist = re.findall(r'\{.*?\}', file)
-        print(file)
-        print(newlist)
-        # return list, newlist
+        pattern = r"{(.*?)}"
+        parts = tuple(re.findall(pattern, results))
+        stripped = re.sub(pattern, "{}", results)
+        return stripped, parts
+
     except AssertionError as e:  
         print(e)
 # create merge function
@@ -43,7 +44,7 @@ def merge(file):
 
     # except AssertionError as e:
     #     print(e)
-
-read_template(story_file)
-# parse_template(story_file)
+if __name__ == '__main__':
+    results = read_template(story_file)
+    print(parse_template(results))
 # merge(story_file)
