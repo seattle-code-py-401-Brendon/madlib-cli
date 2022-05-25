@@ -1,3 +1,4 @@
+from distutils.filelist import findall
 import re
 story_file = '../assets/template.txt'
 
@@ -26,25 +27,23 @@ def parse_template(results):
         pattern = r"{(.*?)}"
         parts = tuple(re.findall(pattern, results))
         stripped = re.sub(pattern, "{}", results)
-        return stripped, parts
+        return stripped, list(parts)
 
     except AssertionError as e:  
         print(e)
 # create merge function
-def merge(file):
-    pass
-    # try:
-    #     list = parse_template(file)
-    #     adj_One = input('Enter Adjective : ')
-    #     adj_Two = input('Enter Second Adjective : ')
-    #     noun = input('Enter a noun : ')
-    #     print(adj_One,adj_Two,noun)
-    #     print(list)
-    #     # merge(story_file)
+def merge(stripped, parts):
+    try:
+        adj_One = input('Enter Adjective : ')
+        adj_Two = input('Enter Second Adjective : ')
+        noun = input('Enter a noun : ')
+        pass
+            
 
-    # except AssertionError as e:
-    #     print(e)
+    except AssertionError as e:
+        print(e)
+   
 if __name__ == '__main__':
     results = read_template(story_file)
-    print(parse_template(results))
-# merge(story_file)
+    stripped, parts = parse_template(results)
+    print(merge(stripped, parts))
