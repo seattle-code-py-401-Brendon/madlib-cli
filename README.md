@@ -19,4 +19,4 @@
     in the terminal once you have started a virtual machine, run __pytest__ at root
  - Any tests of note?
  - Describe any tests that you did not complete, skipped, etc
-   - have not completed second or third function to parse the data and then print out a story with responses.
+   - have not completed the 4th test as I dont know what it is looking for? I dont have a missing.txt so i assume that it is testing correctly as thats what it seems to look for.
