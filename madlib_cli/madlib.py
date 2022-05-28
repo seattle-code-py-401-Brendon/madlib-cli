@@ -1,5 +1,6 @@
+from distutils.filelist import findall
 import re
-story_file = '../assets/dark_and_stormy_night_template.txt'
+story_file = '../assets/template.txt'
 
 intro = """****Welcome to the Madlib Game!****
 
@@ -21,29 +22,29 @@ def read_template(file):
         print('CHECK PATHING OR LOCATION OF FILE!', e)
 
 # create parse template function
-def parse_template(file):
+def parse_template(results):
     try:
-        list = read_template(file)
-        newlist = re.findall(r'\{.*?\}', list)
-        print(newlist)
-        # return list, newlist
+        pattern = r"{(.*?)}"
+        parts = tuple(re.findall(pattern, results))
+        stripped = re.sub(pattern, "{}", results)
+        return stripped,parts
+
     except AssertionError as e:  
         print(e)
 # create merge function
-def merge(file):
-    pass
-    # try:
-    #     list = parse_template(file)
-    #     adj_One = input('Enter Adjective : ')
-    #     adj_Two = input('Enter Second Adjective : ')
-    #     noun = input('Enter a noun : ')
-    #     print(adj_One,adj_Two,noun)
-    #     print(list)
-    #     # merge(story_file)
+def merge(stripped, parts):
+    try:
+        new_list = []
+        new_list.append(input('Enter Adjective : '))
+        new_list.append(input('Enter Second Adjective : '))
+        new_list.append(input('Enter a noun : '))
+        return stripped.split(), new_list
+            
 
-    # except AssertionError as e:
-    #     print(e)
-
-read_template(story_file)
-# parse_template(story_file)
-# merge(story_file)
+    except AssertionError as e:
+        print(e)
+   
+if __name__ == '__main__':
+    results = read_template(story_file)
+    stripped, parts = parse_template(results)
+    print(merge(stripped, parts))
